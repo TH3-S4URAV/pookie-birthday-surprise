@@ -1,12 +1,37 @@
+<div align="center">
+
 # 🎀 Pookie Birthday Surprise Wonderland 🎂✨
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-pink.svg)](LICENSE)
-[![Pure HTML/CSS/JS](https://img.shields.io/badge/Built%20With-Vanilla%20JS%20%7C%20CSS3%20%7C%20HTML5-ff69b4.svg)](https://github.com/TH3-S4URAV)
-[![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](https://github.com/TH3-S4URAV)
+### An aesthetic, romantic & interactive web experience crafted with love and micro-animations.
 
-An aesthetic, romantic, and interactive Birthday Web Application designed with love, luxury animations, and playful mini-games.
+<br/>
 
-Created with **privacy in mind** and designed so that **anyone can easily customize and use it for their partner, best friend, or loved one in under 2 minutes**!
+[![Live Demo](https://img.shields.io/badge/▶%20EXPERIENCE%20LIVE%20DEMO-CLICK%20HERE%20%E2%9C%A8-ff4081?style=for-the-badge&logo=googlechrome&logoColor=white)](https://th3-s4urav.github.io/pookie-birthday-surprise/)
+
+<br/>
+
+[![Live Site](https://img.shields.io/badge/Live%20Website-th3--s4urav.github.io%2Fpookie--birthday--surprise-ff69b4?style=flat-square&logo=github)](https://th3-s4urav.github.io/pookie-birthday-surprise/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-pink.svg?style=flat-square)](LICENSE)
+[![Pure Vanilla JS](https://img.shields.io/badge/Built%20With-Vanilla%20JS%20%7C%20CSS3%20%7C%20HTML5-purple.svg?style=flat-square)](https://th3-s4urav.github.io/pookie-birthday-surprise/)
+[![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg?style=flat-square)](https://github.com/TH3-S4URAV/pookie-birthday-surprise/pulls)
+
+<p align="center">
+  👉 <b><a href="https://th3-s4urav.github.io/pookie-birthday-surprise/">Click Here to Try the Live Demo in Your Browser</a></b> 👈
+</p>
+
+</div>
+
+---
+
+## 🎬 Live Interactive Experience Highlights
+
+| 🔐 **Identity Verification & Curtain Reveal** | 🎂 **3D Cake & Candle Blow** | 📸 **Polaroid Scrapbook & Jukebox** |
+| :---: | :---: | :---: |
+| Runaway "No" button, password unlock & luxury 3-2-1 curtain opening | Interactive flavours, blow candles & fireworks celebration | Floating vinyl music player, washi-tape photo cards & love jar |
+
+| 🎮 **2D Catch The Hearts Game** | 🎟️ **Scratch-Off Love Vouchers** | 📜 **Typewriter Letter & Certificate** |
+| :---: | :---: | :---: |
+| Move your basket with touch/mouse to catch falling hearts | Scratch cards with finger/mouse to reveal custom vouchers | Real-time typewriter typing animation & downloadable award |
 
 ---
 

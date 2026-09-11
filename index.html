@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Anni's Birthday Wonderland 🎂🎀 | For My Pookie Anisha (Anya)</title>
+
+  <!-- Favicon -->
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎀</text></svg>">
+
+  <!-- Aesthetic Fonts (Google Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Fredoka:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Sacramento&display=swap"
+    rel="stylesheet">
+
+  <!-- Canvas Confetti & HTML2Canvas for Certificate Download -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <!-- Early Photo Fallback Handler -->
+  <script>
+    window.handlePolaroidError = function (img, photoName, fallbackUrl) {
+      const altExts = ['png', 'jpeg', 'webp', 'jpg.png', 'png.png'];
+      let attempt = parseInt(img.dataset.extAttempt || '0', 10);
+      if (attempt < altExts.length) {
+        img.dataset.extAttempt = (attempt + 1).toString();
+        img.src = 'assets/images/' + photoName + '.' + altExts[attempt];
+      } else {
+        img.onerror = null;
+        img.src = fallbackUrl;
+      }
+    };
+  </script>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ==================== TOUCH & CLICK MAGIC SPARKLE TRAIL CONTAINER ==================== -->
+  <div id="magicParticleCanvas" class="magic-particles-container"></div>
+
+  <!-- Ambient Floating Background Emojis -->
+  <div class="floating-decorations" id="floatingDecorations"></div>
+
+  <!-- ==================== TEMPLATE 1: FLOATING MULTI-TRACK MUSIC JUKEBOX ==================== -->
+  <div class="music-widget" id="musicWidget">
+    <div class="vinyl-disc" id="vinylDisc">
+      <div class="vinyl-center">🎀</div>
+    </div>
+    <div class="music-info">
+      <span class="music-title" id="musicTitle">Anni's Romantic Melody</span>
+      <div class="music-subrow">
+        <span class="music-artist">Our Special Track</span>
+        <button class="track-switch-btn" id="nextTrackBtn" title="Switch Song">⏭️ Next</button>
+      </div>
+    </div>
+    <button class="music-control-btn" id="musicToggleBtn" aria-label="Play or pause music">
+      <span id="musicIcon">▶️</span>
+    </button>
+    <audio id="bgAudio" loop preload="auto">
+      <source src="assets/music/romantic_lofi.mp3" type="audio/mpeg">
+      <source
+        src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"
+        type="audio/mpeg">
+    </audio>
+  </div>
+
+  <!-- ==================== TEMPLATE 2: POOKIE VERIFICATION / SECURITY GATE ==================== -->
+  <div class="lock-overlay" id="lockScreen">
+    <div class="pookie-card lock-card">
+      <div class="card-badge" id="lockCardBadge">✨ Saurav's Ultimate Love Vault ✨</div>
+      <div class="pookie-avatar">🎀🧸</div>
+      <h2 class="lock-title">Pookie Identity Verification!</h2>
+      <p class="lock-subtitle" id="lockSubtitle">Are you Saurav's sweet, innocent, loyal & official <b>Anni (Anya)</b>?</p>
+
+      <div class="lock-actions">
+        <button class="btn btn-primary" id="btnYesAnya">
+          Yes, I am Anni! 💖
+        </button>
+        <button class="btn btn-secondary" id="btnNoAnya">
+          No, wrong girl 🙈
+        </button>
+      </div>
+      <p class="lock-hint" id="lockHint">Hint: Only Saurav's one-and-only Kuchu Puchu can enter! 🌸</p>
+    </div>
+  </div>
+
+  <!-- ==================== GRAND THEATRICAL CURTAIN & 3-2-1 COUNTDOWN STAGE ==================== -->
+  <div class="curtain-stage-overlay" id="curtainStage" style="display: none;">
+    <!-- Top Royal Swag & Pelmet -->
+    <div class="curtain-valance" id="curtainValance">
+      <div class="valance-swag-drapes">
+        <span class="swag-knot">👑</span>
+        <span class="swag-knot center-knot">🎀</span>
+        <span class="swag-knot">👑</span>
+      </div>
+      <div class="valance-title-banner">
+        <span class="valance-stars">✨ 💖 ✨</span>
+        <h2 class="valance-text" id="valanceText">Anni's Grand Birthday Premiere</h2>
+        <span class="valance-sub" id="valanceSub">Directed with infinite love by Saurav</span>
+      </div>
+      <div class="valance-gold-fringe"></div>
+    </div>
+
+    <!-- Center Stage Spotlight -->
+    <div class="curtain-spotlight"></div>
+
+    <!-- Split Left & Right Velvet Curtains -->
+    <div class="curtain-panels-container">
+      <div class="curtain-panel curtain-left" id="curtainLeft">
+        <div class="curtain-pleats"></div>
+        <div class="curtain-gold-trim"></div>
+        <div class="curtain-rope rope-left">
+          <div class="rope-tassel">🎗️</div>
+        </div>
+      </div>
+      <div class="curtain-panel curtain-right" id="curtainRight">
+        <div class="curtain-pleats"></div>
+        <div class="curtain-gold-trim"></div>
+        <div class="curtain-rope rope-right">
+          <div class="rope-tassel">🎗️</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dramatic Countdown Pod -->
+    <div class="countdown-stage-pod" id="countdownPod">
+      <div class="countdown-badge">🎀 SPECIAL SURPRISE UNLOCKING 🎀</div>
+      <div class="countdown-circle">
+        <div class="countdown-number" id="countdownNum">3</div>
+      </div>
+      <div class="countdown-caption" id="countdownCaption">Hold your breath, Anni! 💖</div>
+      <div class="countdown-floating-hearts" id="countdownHearts">✨ 🌸 ✨</div>
+    </div>
+  </div>
+
+  <!-- ==================== MAIN APPLICATION CONTAINER ==================== -->
+  <div class="app-layout" id="mainContent">
+
+    <!-- STICKY TOP POOKIE NAVIGATION BAR -->
+    <nav class="pookie-nav">
+      <div class="nav-brand" id="navBrand">🎀 Anni's Wonderland</div>
+      <div class="nav-links">
+        <a href="#heroSec" class="nav-link active">Home</a>
+        <a href="#counterSec" class="nav-link">Our Clock</a>
+        <a href="#cakeSec" class="nav-link">Cake 🎂</a>
+        <a href="#giftSec" class="nav-link">Gifts 🎁</a>
+        <a href="#gallerySec" class="nav-link">Photos 📸</a>
+        <a href="#jarSec" class="nav-link">Love Jar 🫙</a>
+        <a href="#envelopesSec" class="nav-link">Letters 💌</a>
+        <a href="#gamesSec" class="nav-link">Mini-Games 🎮</a>
+        <a href="#couponsSec" class="nav-link">Coupons 🎟️</a>
+        <a href="#certSec" class="nav-link">Certificate 🏆</a>
+      </div>
+    </nav>
+
+    <main class="main-wrapper">
+
+      <!-- ==================== TEMPLATE 3: GRAND BIRTHDAY HERO & CELEBRATION STAGE ==================== -->
+      <section class="hero-section" id="heroSec">
+        <div class="sparkle-tag" id="heroSparkleTag">✨ 11 September Special • World's Cutest Birthday Girl ✨</div>
+        <h1 class="hero-title">
+          Happy Birthday, <br />
+          <span class="highlight-name" id="heroHighlightName">My Sweet Pookie Anni!</span> 🎀👑
+        </h1>
+        <p class="hero-subtitle" id="heroSubtitle">
+          To the most innocent, precious, loyal and purest soul in my entire universe—<b>Anisha (Anni)</b>. <br />
+          You make every single day of my life feel like poetry! 🌸✨
+        </p>
+
+        <div class="hero-badges">
+          <div class="badge-item" id="heroBadge1"><span class="badge-icon">👑</span> Saurav's Forever Queen</div>
+          <div class="badge-item" id="heroBadge2"><span class="badge-icon">💖</span> only & only minee!</div>
+          <div class="badge-item" id="heroBadge3"><span class="badge-icon">🐣</span> mera suar Kuchu Puchu</div>
+          <div class="badge-item" id="heroBadge4"><span class="badge-icon">✨</span> Born on 11-09-2010</div>
+        </div>
+
+        <div class="hero-actions">
+          <button class="btn btn-primary" id="btnExploreSurprise"
+            onclick="document.getElementById('counterSec').scrollIntoView({behavior: 'smooth'})">
+            ✨ Explore Birthday Surprises ✨
+          </button>
+          <button class="btn btn-secondary btn-replay-curtain" id="btnReplayCurtain"
+            title="Watch the grand curtain reveal & countdown again">
+            🎭 Replay Curtain Opening
+          </button>
+        </div>
+      </section>
+
+      <!-- ==================== TEMPLATE 4: LIVE LOVE CLOCK & LONG-DISTANCE TRACKER ==================== -->
+      <section class="counter-section" id="counterSec">
+        <div class="section-heading">
+          <h2>Our Journey of Togetherness ⏳❤️</h2>
+          <p id="counterSubtitle">Every single heartbeat since November 2025 is dedicated only to you.</p>
+        </div>
+
+        <div class="counter-grid">
+          <div class="counter-card">
+            <span class="counter-value" id="countDays">0</span>
+            <span class="counter-label">Days of Love</span>
+          </div>
+          <div class="counter-card">
+            <span class="counter-value" id="countHours">0</span>
+            <span class="counter-label">Hours Together</span>
+          </div>
+          <div class="counter-card">
+            <span class="counter-value" id="countMins">0</span>
+            <span class="counter-label">Minutes</span>
+          </div>
+          <div class="counter-card">
+            <span class="counter-value" id="countSecs">0</span>
+            <span class="counter-label">Seconds</span>
+          </div>
+        </div>
+
+        <!-- Long Distance Flight Map Card -->
+        <div class="distance-card">
+          <div class="distance-visual">
+            <div class="pin" id="pinSender"><span>Saurav 📍</span></div>
+            <div class="distance-line">
+              <span class="heart-pulse">✈️ 💖 💌</span>
+            </div>
+            <div class="pin" id="pinPartner"><span>Anni (Anya) 🌸</span></div>
+          </div>
+          <p class="distance-quote">
+            "Long distance only tests how strong love is. <br />
+            Thousands of kilometers on Google Maps, but <b>0.0 mm</b> in my heart! 💕"
+          </p>
+        </div>
+      </section>
+
+      <!-- ==================== TEMPLATE 5: 3D INTERACTIVE CAKE BAKERY (CUSTOM TOPPINGS & BLOWING) ==================== -->
+      <section class="cake-section" id="cakeSec">
+        <div class="section-heading">
+          <h2>Anni's 3D Birthday Cake Bakery 🎂✨</h2>
+          <p>Choose your cake flavour, add toppings, make a wish, and blow out the candles!</p>
+        </div>
+
+        <!-- Cake Flavour Switcher -->
+        <div class="flavour-selector">
+          <button class="flavour-btn active" data-flavor="strawberry">🍓 Strawberry Cream</button>
+          <button class="flavour-btn" data-flavor="chocolate">🍫 Belgian Chocolate</button>
+          <button class="flavour-btn" data-flavor="vanilla">🧁 Vanilla Lavender</button>
+        </div>
+
+        <div class="cake-container">
+          <div class="cake flavor-strawberry" id="cakeElement">
+            <div class="plate"></div>
+            <div class="layer layer-bottom"></div>
+            <div class="layer layer-middle"></div>
+            <div class="layer layer-top">
+              <div class="icing"></div>
+              <div class="strawberry s1" id="top1">🍓</div>
+              <div class="strawberry s2" id="top2">🍓</div>
+              <div class="strawberry s3" id="top3">🍓</div>
+            </div>
+            <!-- 3 Flickering Candles -->
+            <div class="candle c1">
+              <div class="flame" id="flame1"></div>
+            </div>
+            <div class="candle c2">
+              <div class="flame" id="flame2"></div>
+            </div>
+            <div class="candle c3">
+              <div class="flame" id="flame3"></div>
+            </div>
+          </div>
+
+          <div class="cake-controls">
+            <button class="btn btn-blow" id="btnBlowCandles">
+              🎂 Make a Wish & Blow Candles! 🌬️
+            </button>
+            <div class="wish-message" id="wishSuccessMsg">
+              🎉 YAAAY! Happy 16th Birthday Anni! May all your sweet wishes come true! 💖✨
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== TEMPLATE 6: 3D SURPRISE GIFT UNBOXING CEREMONY ==================== -->
+      <section class="gift-unboxing-section" id="giftSec">
+        <div class="section-heading">
+          <h2 id="giftHeading">Virtual Gift Box from Saurav 🎁🎀</h2>
+          <p>Tap on the ribbon to unwrap your special birthday surprise!</p>
+        </div>
+
+        <div class="gift-box-wrapper" id="giftBoxWrapper">
+          <div class="gift-box" id="giftBox">
+            <div class="gift-lid" id="giftLid">
+              <div class="gift-bow">🎀</div>
+            </div>
+            <div class="gift-body">
+              <div class="gift-ribbon-v"></div>
+              <div class="gift-ribbon-h"></div>
+            </div>
+          </div>
+          <div class="gift-unwrapped-content" id="giftContent">
+            <div class="sparkle-crystal">💎🧸💖</div>
+            <h3 id="giftUnlockedTitle">Saurav's Eternal Love & Hugs!</h3>
+            <p id="giftUnlockedDesc">You unlocked infinite love, loyalty, and a promise that Saurav will always be there for you no matter
+              what! 🌸</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== TEMPLATE 7: POLAROID MEMORY LANE & PHOTO FILM ROLL ==================== -->
+      <section class="gallery-section" id="gallerySec">
+        <div class="section-heading">
+          <h2 id="galleryHeading">Anni's Cute Moments Scrapbook 📸</h2>
+          <p>A collection of the girl who made my whole world brighter.</p>
+        </div>
+
+        <div class="polaroid-grid">
+          <div class="polaroid-item" style="--rotation: -3deg;">
+            <div class="tape"></div>
+            <div class="polaroid-img-wrapper">
+              <img src="assets/images/photo1.jpg" alt="Anni"
+                onerror="handlePolaroidError(this, 'photo1', 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80')" />
+            </div>
+            <p class="polaroid-caption">Meri Sabse Pyaari Anniii 🥹❤️🎀</p>
+          </div>
+
+          <div class="polaroid-item" style="--rotation: 2.5deg;">
+            <div class="tape"></div>
+            <div class="polaroid-img-wrapper">
+              <img src="assets/images/photo2.jpg" alt="Anni"
+                onerror="handlePolaroidError(this, 'photo2', 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&auto=format&fit=crop&q=80')" />
+            </div>
+            <p class="polaroid-caption">Bas Tu Hi Tu Achhi Lagti Hai 🫶🏻💗</p>
+          </div>
+
+          <div class="polaroid-item" style="--rotation: -2deg;">
+            <div class="tape"></div>
+            <div class="polaroid-img-wrapper">
+              <img src="assets/images/photo3.jpg" alt="Anni"
+                onerror="handlePolaroidError(this, 'photo3', 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500&auto=format&fit=crop&q=80')" />
+            </div>
+            <p class="polaroid-caption">Meri Wifeyyy, Meri Shaan ❤️🧿</p>
+          </div>
+
+          <div class="polaroid-item" style="--rotation: 3.5deg;">
+            <div class="tape"></div>
+            <div class="polaroid-img-wrapper">
+              <img src="assets/images/photo4.jpg" alt="Anni"
+                onerror="handlePolaroidError(this, 'photo4', 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&auto=format&fit=crop&q=80')" />
+            </div>
+            <p class="polaroid-caption">Meri Choti Si Kuchu Puchuuu 🧸❤️</p>
+          </div>
+
+          <div class="polaroid-item" style="--rotation: -3.5deg;">
+            <div class="tape"></div>
+            <div class="polaroid-img-wrapper">
+              <img src="assets/images/photo5.jpg" alt="Anni"
+                onerror="handlePolaroidError(this, 'photo5', 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=500&auto=format&fit=crop&q=80')" />
+            </div>
+            <p class="polaroid-caption">Teri Smile Pe Toh Main Gaya 🥹🌷</p>
+          </div>
+
+          <div class="polaroid-item" style="--rotation: 2deg;">
+            <div class="tape"></div>
+            <div class="polaroid-img-wrapper">
+              <img src="assets/images/photo6.jpg" alt="Anni"
+                onerror="handlePolaroidError(this, 'photo6', 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=500&auto=format&fit=crop&q=80')" />
+            </div>
+            <p class="polaroid-caption">Pretty Outside, Meri Favourite Inside ❤️‍🩹🫶🏻</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== TEMPLATE 8: THE "POOKIE JAR" (INFINITE POP-UP LOVE NOTES) ==================== -->
+      <section class="jar-section" id="jarSec">
+        <div class="section-heading">
+          <h2>The Magical Pookie Jar 🫙✨</h2>
+          <p id="jarSubtitle">Tap the jar to draw a fresh love note from Saurav!</p>
+        </div>
+
+        <div class="jar-container">
+          <div class="jar-graphic" id="pookieJarBtn">
+            <div class="jar-lid">🎀</div>
+            <div class="jar-body">
+              <div class="jar-label" id="jarLabel">50+ Notes for Anni</div>
+              <div class="jar-hearts">💖 💕 💌 🌸 🧸</div>
+            </div>
+          </div>
+
+          <div class="note-display" id="noteDisplay">
+            <div class="note-paper">
+              <span class="note-sparkle">✨</span>
+              <p id="noteText">"Tap on the Pookie Jar above to open a secret love note!"</p>
+              <span class="note-counter" id="noteCounter">Notes opened: 0</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== TEMPLATE 9: "OPEN WHEN..." SECRET ENVELOPES ==================== -->
+      <section class="envelopes-section" id="envelopesSec">
+        <div class="section-heading">
+          <h2>"Open When..." Letters 💌📬</h2>
+          <p>Click on any envelope to read a special message written just for that moment.</p>
+        </div>
+
+        <div class="envelopes-grid">
+          <!-- Envelope 1 -->
+          <div class="envelope-card" data-letter="miss">
+            <div class="envelope-icon">🥺</div>
+            <h3>Open When You Miss Me</h3>
+            <p>Read when the long distance feels heavy...</p>
+            <button class="btn btn-sm">Open Envelope ✉️</button>
+          </div>
+          <!-- Envelope 2 -->
+          <div class="envelope-card" data-letter="angry">
+            <div class="envelope-icon">😤</div>
+            <h3>Open When You Are Angry</h3>
+            <p>Read when you are annoyed or upset with me...</p>
+            <button class="btn btn-sm">Open Envelope ✉️</button>
+          </div>
+          <!-- Envelope 3 -->
+          <div class="envelope-card" data-letter="sad">
+            <div class="envelope-icon">😢</div>
+            <h3>Open When You Feel Low</h3>
+            <p>A reminder of how precious and strong you are...</p>
+            <button class="btn btn-sm">Open Envelope ✉️</button>
+          </div>
+          <!-- Envelope 4 -->
+          <div class="envelope-card" data-letter="bday">
+            <div class="envelope-icon">🎂</div>
+            <h3>Open on Your Birthday</h3>
+            <p>A special 11th September celebration letter!</p>
+            <button class="btn btn-sm">Open Envelope ✉️</button>
+          </div>
+        </div>
+
+        <!-- Envelope Modal Pop-up -->
+        <div class="envelope-modal" id="envelopeModal">
+          <div class="envelope-modal-content">
+            <button class="modal-close" id="closeEnvelopeModal">&times;</button>
+            <div class="modal-badge" id="envModalBadge">💌 Special Letter</div>
+            <h3 id="envModalTitle">Letter Title</h3>
+            <div class="modal-body-text" id="envModalText">Letter content goes here...</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== TEMPLATE 10: STORY CHAPTERS SCRAPBOOK ==================== -->
+      <section class="story-chapters-section">
+        <div class="section-heading">
+          <h2>Our Story: The Chapters of Us 📖✨</h2>
+          <p>How two souls connected and built something extraordinary.</p>
+        </div>
+
+        <div class="timeline-container">
+          <div class="timeline-item">
+            <div class="timeline-badge">Chapter 1</div>
+            <div class="timeline-content">
+              <h3>18 November 2025 • The First Spark ✨</h3>
+              <p>The unforgettable month our paths crossed. That first conversation changed my whole world and brought
+                the sweetest girl into my life.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-badge">Chapter 2</div>
+            <div class="timeline-content">
+              <h3>Innocence & Late Night Talks 🌙</h3>
+              <p>Discovering your sweet childlike nature, your laughs, and the comfort of sharing every little detail of
+                our days together.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-badge">Chapter 3</div>
+            <div class="timeline-content">
+              <h3>Distance Means Nothing 📍❤️</h3>
+              <p>Proving that true loyalty and pure love don't depend on physical proximity. You proved to be the most
+                loyal partner anyone could ever wish for.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-badge">Chapter 4</div>
+            <div class="timeline-content">
+              <h3>11 September 2026 & Beyond 💍</h3>
+              <p>Celebrating your 16th birthday today and looking forward to all the upcoming birthdays, meetings,
+                ice-cream dates and dreams we will achieve!</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== TEMPLATE 11: COUPLE QUIZ ("HOW WELL DO YOU KNOW US?") ==================== -->
+      <section class="quiz-section" id="gamesSec">
+        <div class="section-heading">
+          <h2 id="quizHeading">The Couple Quiz: Anni Edition 🧠💖</h2>
+          <p>Let's see if you can get a 100% score on this cute relationship quiz!</p>
+        </div>
+
+        <div class="quiz-box" id="quizBox">
+          <div class="quiz-header">
+            <span class="quiz-step" id="quizStep">Question 1 of 4</span>
+            <span class="quiz-score" id="quizScore">Score: 0</span>
+          </div>
+          <div class="quiz-question" id="quizQuestion">
+            What is Saurav's absolute favourite thing about Anni?
+          </div>
+          <div class="quiz-options" id="quizOptions">
+            <!-- Options dynamically rendered by script -->
+          </div>
+          <div class="quiz-feedback" id="quizFeedback"></div>
+        </div>
+      </section>
+
+      <!-- ==================== TEMPLATE 12: 2D MINI-GAME ("CATCH SAURAV'S HEARTS") ==================== -->
+      <section class="minigame-section">
+        <div class="section-heading">
+          <h2 id="gameHeading">Mini-Game: Catch Saurav's Hearts! 🧺💖</h2>
+          <p>Move the basket (touch or mouse) to catch as many falling hearts as you can in 30 seconds!</p>
+        </div>
+
+        <div class="game-wrapper">
+          <div class="game-stats">
+            <span>Score: <b id="gameScore">0</b></span>
+            <span>Time Left: <b id="gameTimer">30s</b></span>
+          </div>
+          <canvas id="heartGameCanvas" width="380" height="320"></canvas>
+          <div class="game-controls">
+            <button class="btn btn-primary" id="btnStartGame">🎮 Start Mini-Game!</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== TEMPLATE 13: MAGIC SCRATCH CARDS (LOVE COUPONS) ==================== -->
+      <section class="coupons-section" id="couponsSec">
+        <div class="section-heading">
+          <h2>Magic Scratch-Off Love Coupons 🎟️🪄</h2>
+          <p id="couponsSubtitle">Scratch the cards with your finger or mouse to reveal redeemable vouchers from Saurav!</p>
+        </div>
+
+        <div class="scratch-grid">
+          <!-- Coupon 1 -->
+          <div class="scratch-card-wrapper">
+            <div class="scratch-reward">
+              <span class="coupon-tag">VOUCHER #01</span>
+              <h4>🌙 1 Free Late-Night Video Call</h4>
+              <p>Redeemable anytime, even at 3 AM! No questions asked.</p>
+            </div>
+            <canvas class="scratch-canvas" id="scratch1" width="280" height="150"></canvas>
+          </div>
+
+          <!-- Coupon 2 -->
+          <div class="scratch-card-wrapper">
+            <div class="scratch-reward">
+              <span class="coupon-tag">VOUCHER #02</span>
+              <h4>🍦 Infinite Ice Cream & Treat Pass</h4>
+              <p>Saurav pays for your favorite chocolate or ice cream treat!</p>
+            </div>
+            <canvas class="scratch-canvas" id="scratch2" width="280" height="150"></canvas>
+          </div>
+
+          <!-- Coupon 3 -->
+          <div class="scratch-card-wrapper">
+            <div class="scratch-reward">
+              <span class="coupon-tag">VOUCHER #03</span>
+              <h4>👑 "Anni is Always Right" Pass</h4>
+              <p>Instant win in any playful argument for an entire day!</p>
+            </div>
+            <canvas class="scratch-canvas" id="scratch3" width="280" height="150"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== TEMPLATE 14: REASONS WHY YOU HAVE MY WHOLE HEART ==================== -->
+      <section class="reasons-section">
+        <div class="section-heading">
+          <h2 id="reasonsHeading">Why Anni Owns My Heart 💌</h2>
+          <p>Four little truths that make you irreplaceable in my life.</p>
+        </div>
+
+        <div class="reasons-grid">
+          <div class="reason-card">
+            <div class="reason-icon">🧸</div>
+            <h3>Your Sweet Innocence</h3>
+            <p>Aapki wo masoomiyat, cute naadan baatein aur bacho jaisi smile mera har din special bana deti hai.</p>
+          </div>
+          <div class="reason-card">
+            <div class="reason-icon">💎</div>
+            <h3>100% Pure Loyalty</h3>
+            <p>Aaj ke time me aap jaisa honest aur loyal partner milna mere liye rab ka sabse bada gift hai.</p>
+          </div>
+          <div class="reason-card">
+            <div class="reason-icon">🥰</div>
+            <h3>My Safe Place & Peace</h3>
+            <p>Chahe din kitna bhi stressful ho, aapse 5 minute baat karke dil ko sukoon mil jata hai.</p>
+          </div>
+          <div class="reason-card">
+            <div class="reason-icon">🌸</div>
+            <h3>My Only Pookie</h3>
+            <p>Anni ho, Anya ho ya Anisha—aap har roop me meri sabse favourite person ho!</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== TEMPLATE 15: TYPEWRITER LOVE LETTER FROM SAURAV ==================== -->
+      <section class="letter-section">
+        <div class="section-heading">
+          <h2>A Letter Written From My Heart 📜✍️</h2>
+          <p>Read the words that my heart always whispers for you...</p>
+        </div>
+
+        <div class="letter-parchment">
+          <div class="letter-stamp" id="letterStamp">From Saurav ❤️</div>
+          <div class="letter-content" id="typewriterText">
+            <!-- Smooth typing letter via JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== TEMPLATE 16: OFFICIAL CERTIFICATE OF LOVE (DOWNLOADABLE) ==================== -->
+      <section class="cert-section" id="certSec">
+        <div class="section-heading">
+          <h2 id="certHeadingTitle">Official World's Best Girlfriend Certificate 🏆🎀</h2>
+          <p id="certSubSubtitle">Presented to Anisha with love and infinite respect.</p>
+        </div>
+
+        <div class="cert-wrapper" id="certificateCard">
+          <div class="cert-border">
+            <div class="cert-ribbon">👑 OFFICIAL AWARD 👑</div>
+            <h2 class="cert-heading" id="certMainTitle">Certificate of Absolute Perfection</h2>
+            <p class="cert-sub">This certificate is proudly and lovingly awarded to:</p>
+            <h1 class="cert-name" id="certName">Anisha (Anni 🎀 )</h1>
+            <p class="cert-desc" id="certDesc">
+              For being the sweetest, most loyal, innocent, and adorable Pookie in the entire universe. <br />
+              Certified as <b>Saurav's Forever Queen & Favorite Person</b>.
+            </p>
+            <div class="cert-footer">
+              <div class="cert-sign">
+                <span class="sign-title">Issued By:</span>
+                <span class="sign-name" id="certSign">Saurav ❤️</span>
+              </div>
+              <div class="cert-seal">
+                <span>SEAL OF<br />TRUE LOVE<br />💍</span>
+              </div>
+              <div class="cert-date">
+                <span class="sign-title">Date:</span>
+                <span class="sign-name" id="certDate">11 Sept 2026</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cert-actions">
+          <button class="btn btn-primary" id="btnDownloadCert">
+            📥 Download Certificate as Image!
+          </button>
+        </div>
+      </section>
+
+      <!-- ==================== TEMPLATE 17: POOKIE METER & PROPOSAL ==================== -->
+      <section class="interactive-section">
+        <div class="section-heading">
+          <h2>The Ultimate Pookie Meter 🔮</h2>
+          <p id="meterSubtitle">Calculate Saurav's love for Anni in real-time!</p>
+        </div>
+
+        <div class="meter-box">
+          <label for="loveRange" class="meter-label">Love Level: <span id="meterScore">100%</span></label>
+          <input type="range" id="loveRange" min="10" max="100" value="50" class="custom-slider" />
+          <div class="meter-result" id="meterResult">Slide all the way to 100% to see true love! 💕</div>
+        </div>
+
+        <div class="proposal-box">
+          <h3 id="proposalQuestion">Anni, will you always stay as Saurav's sweet little Pookie? 🥺💍</h3>
+          <div class="proposal-btns">
+            <button class="btn btn-primary" id="btnAlwaysYes">
+              Yes, Forever & Always! 💖
+            </button>
+            <button class="btn btn-secondary" id="btnPlayfulNo">
+              Sochne do thoda... 🙈
+            </button>
+          </div>
+          <div class="proposal-response" id="proposalResponse"></div>
+        </div>
+      </section>
+
+      <!-- ==================== TEMPLATE 18: FOOTER & DEDICATION ==================== -->
+      <footer class="footer">
+        <p id="footerDedication">Crafted with infinite love, patience & code by <b>Saurav</b> for his <b>Anni</b> 💖</p>
+        <p class="footer-small" id="footerSub">Happy Birthday Anisha (11-09-2010) • November 2025 to Infinity ✨</p>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- Configuration Files -->
+  <script src="config.js"></script>
+  <script src="config.private.js" onerror="/* Optional private configuration not present */"></script>
+
+  <!-- JavaScript Engine -->
+  <script src="script.js"></script>
+</body>
+
+</html>

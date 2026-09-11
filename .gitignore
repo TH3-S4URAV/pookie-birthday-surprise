@@ -1,0 +1,37 @@
+# ==========================================================
+# POOKIE BIRTHDAY SURPRISE - PRIVACY & GITIGNORE
+# ==========================================================
+
+# Private Custom Configuration Override (Keep personal details safe)
+config.private.js
+
+# Private Photos & Media (Keeps your personal pictures from leaking to GitHub)
+assets/images/*
+!assets/images/.gitkeep
+
+# Private Audio / Music Files (Keeps copyrighted/personal songs off GitHub)
+assets/music/*
+!assets/music/.gitkeep
+
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+[Dd]esktop.ini
+
+# IDE & Editor Settings
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+
+# Temporary & Log Files
+*.log
+*.tmp
+*.bak

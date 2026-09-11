@@ -159,6 +159,43 @@ document.addEventListener('DOMContentLoaded', () => {
   // Execute configuration updates immediately
   applySurpriseConfig();
 
+  // Handle Demo Mode & Section Deep-links (e.g., ?demo=cakeSec or #cakeSec)
+  const urlParams = new URLSearchParams(window.location.search);
+  const previewParam = urlParams.get('demo') || (window.location.hash ? window.location.hash.replace('#', '') : null);
+  if (previewParam && previewParam !== 'gate') {
+    const lockScreenElem = document.getElementById('lockScreen');
+    if (lockScreenElem) lockScreenElem.style.display = 'none';
+
+    if (previewParam === 'curtain') {
+      const curtainStageElem = document.getElementById('curtainStage');
+      if (curtainStageElem) {
+        curtainStageElem.style.display = 'flex';
+        curtainStageElem.style.opacity = '1';
+      }
+    } else {
+      const curtainStageElem = document.getElementById('curtainStage');
+      if (curtainStageElem) curtainStageElem.style.display = 'none';
+
+      // Ensure typewriter letter has content rendered for preview
+      const tw = document.getElementById('typewriterText');
+      if (tw && CFG.letter) {
+        const l = CFG.letter;
+        const paras = Array.isArray(l.paragraphs) ? l.paragraphs.join('<br/><br/>') : l.paragraphs;
+        tw.innerHTML = `${l.salutation || ''}<br/><br/>${paras}<br/><br/>${l.closing || ''}<br/>${l.signature || ''}`;
+      }
+
+      // If specific section targeted, hide other sections for clean screenshot framing
+      if (previewParam !== 'all' && previewParam !== 'heroSec') {
+        const targetElem = document.getElementById(previewParam);
+        if (targetElem) {
+          document.querySelectorAll('section').forEach(s => s.style.display = 'none');
+          targetElem.style.display = 'block';
+          targetElem.style.paddingTop = '15px';
+        }
+      }
+    }
+  }
+
   // ==================== 1. TOUCH & CLICK MAGIC SPARKLE TRAIL ====================
   const particleContainer = document.getElementById('magicParticleCanvas');
   const sparkleEmojis = ['💖', '✨', '🎀', '🌸', '💕', '⭐', '🧸', '🍓', '🌷'];

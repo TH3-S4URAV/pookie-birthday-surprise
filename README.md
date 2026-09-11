@@ -19,19 +19,67 @@
   👉 <b><a href="https://th3-s4urav.github.io/pookie-birthday-surprise/">Click Here to Try the Live Demo in Your Browser</a></b> 👈
 </p>
 
+<!-- Animated Walkthrough Showcase -->
+<p align="center">
+  <img src="assets/demo/demo_showcase.gif" alt="Pookie Birthday Surprise Interactive Walkthrough Demo" width="100%" style="max-width: 860px; border-radius: 12px; box-shadow: 0 12px 36px rgba(255, 64, 129, 0.2);" />
+</p>
+
 </div>
 
 ---
 
 ## 🎬 Live Interactive Experience Highlights
 
-| 🔐 **Identity Verification & Curtain Reveal** | 🎂 **3D Cake & Candle Blow** | 📸 **Polaroid Scrapbook & Jukebox** |
-| :---: | :---: | :---: |
-| Runaway "No" button, password unlock & luxury 3-2-1 curtain opening | Interactive flavours, blow candles & fireworks celebration | Floating vinyl music player, washi-tape photo cards & love jar |
-
-| 🎮 **2D Catch The Hearts Game** | 🎟️ **Scratch-Off Love Vouchers** | 📜 **Typewriter Letter & Certificate** |
-| :---: | :---: | :---: |
-| Move your basket with touch/mouse to catch falling hearts | Scratch cards with finger/mouse to reveal custom vouchers | Real-time typewriter typing animation & downloadable award |
+<table align="center">
+  <tr>
+    <td align="center" width="50%">
+      <b>🔐 Identity Verification & Curtains</b><br/><br/>
+      <img src="assets/demo/demo1_verification.png" alt="Identity Verification Gate" width="100%" style="border-radius: 8px;"/><br/>
+      <i>Runaway "No" button, password unlock & gold velvet curtain reveal</i>
+    </td>
+    <td align="center" width="50%">
+      <b>🎀 Curtains Open & Romantic Hero</b><br/><br/>
+      <img src="assets/demo/demo2_hero.png" alt="Curtains Open & Hero Banner" width="100%" style="border-radius: 8px;"/><br/>
+      <i>Theatrical 3-2-1 chime countdown & sparkling love banner</i>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <b>⏳ Togetherness Clock & Long Distance Radar</b><br/><br/>
+      <img src="assets/demo/demo3_countdown.png" alt="Togetherness Clock & Radar" width="100%" style="border-radius: 8px;"/><br/>
+      <i>Live Days:Hours:Mins clock and flight distance radar</i>
+    </td>
+    <td align="center" width="50%">
+      <b>🎂 3D Cake Flavor & Candle Blow</b><br/><br/>
+      <img src="assets/demo/demo4_cake.png" alt="3D Cake & Candle Blow" width="100%" style="border-radius: 8px;"/><br/>
+      <i>Flavour switcher, interactive candle blow & confetti bursts</i>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <b>📸 Polaroid Scrapbook & Floating Jukebox</b><br/><br/>
+      <img src="assets/demo/demo5_gallery.png" alt="Polaroid Memory Lane" width="100%" style="border-radius: 8px;"/><br/>
+      <i>Aesthetic washi-tape photo cards & spinning vinyl music player</i>
+    </td>
+    <td align="center" width="50%">
+      <b>🎮 2D Catch The Hearts Mini-Game</b><br/><br/>
+      <img src="assets/demo/demo6_games.png" alt="Mini-Game & Love Meter" width="100%" style="border-radius: 8px;"/><br/>
+      <i>Catch falling hearts with touch/mouse + infinite love meter</i>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <b>🎟️ Scratch-Off Love Vouchers & Jars</b><br/><br/>
+      <img src="assets/demo/demo7_coupons.png" alt="Scratch Coupons & Love Jars" width="100%" style="border-radius: 8px;"/><br/>
+      <i>Interactive scratch cards with coin sounds & open-when letters</i>
+    </td>
+    <td align="center" width="50%">
+      <b>📜 Typewriter Letter & Certificate</b><br/><br/>
+      <img src="assets/demo/demo8_certificate.png" alt="Letter & Downloadable Certificate" width="100%" style="border-radius: 8px;"/><br/>
+      <i>Real-time vintage typewriter typing & downloadable official award</i>
+    </td>
+  </tr>
+</table>
 
 ---
 
